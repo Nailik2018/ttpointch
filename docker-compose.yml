@@ -1,0 +1,25 @@
+services:
+  mysql_database:
+    container_name: ttpointch-mysql-container-dev
+    image: mysql:8.3.0
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_PORT=${MYSQL_PORT}
+    ports:
+      - "${MYSQL_PORT}:${MYSQL_PORT}"
+  phpmyadmin:
+    container_name: ttpointch-phpmyadmin-container-dev
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: ttpointch-mysql-container-dev
+    depends_on:
+      - mysql_database
+    ports:
+      - "${PHPMYADMIN_PORT}:80"
