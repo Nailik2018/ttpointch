@@ -2,6 +2,7 @@ import {Module} from '@nestjs/common';
 import {AssociationModule} from './module/association/association.module';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
+import {SeederService} from './services/seeder.service';
 
 @Module({
   imports: [
@@ -24,6 +25,6 @@ import {TypeOrmModule} from '@nestjs/typeorm';
     }),
     AssociationModule],
   controllers: [],
-  providers: [],
+  providers: [SeederService],
 })
 export class AppModule {}
