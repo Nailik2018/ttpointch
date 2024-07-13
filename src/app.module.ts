@@ -3,6 +3,7 @@ import {AssociationModule} from './module/association/association.module';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {SeederService} from './services/seeder.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import {SeederService} from './services/seeder.service';
         synchronize: true,}),
       inject: [ConfigService],
     }),
-    AssociationModule],
+    AssociationModule,
+    AuthModule],
   controllers: [],
   providers: [SeederService],
 })
